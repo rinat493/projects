@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="calculiter">
+            <form>
+                <div class="display">
+                    <input type="text" name="display" id="strres">
+                </div>
+                <div>
+                    <input type="button" value="AC" class="operator">
+                    <input type="button" value="DE" class="operator">
+                    <input type="button" value="." class="operator">
+                    <input type="button" value="/" class="operator">
+                </div>
+                <div>
+                    <input type="button" value="7">
+                    <input type="button" value="8">
+                    <input type="button" value="9">
+                    <input type="button" value="*">
+                </div>
+                <div>
+                    <input type="button" value="4">
+                    <input type="button" value="5">
+                    <input type="button" value="6">
+                    <input type="button" value="-">
+                </div>
+                <div>
+                    <input type="button" value="1">
+                    <input type="button" value="2">
+                    <input type="button" value="3">
+                    <input type="button" value="+">
+                </div>
+                <div>
+                    <input type="button" value="00">
+                    <input type="button" value="0">
+                    <input type="button" value="=">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var string =''
+    document.getElementsByClassName("calculiter")[0].addEventListener("click", displayDate);
+    
+
+function displayDate() {
+    if(event.target.value == "AC"){
+        string = '';
+        document.getElementById("strres").value = string;
+        
+    }
+    else if(event.target.value == "DE"){
+        string = string.slice(0,-1);
+        document.getElementById("strres").value = string;
+    }
+    else if ( event.target.value =='=') {
+        calculate(string);
+        string = ''; // Clear the string in case of an error
+    }
+    else if (event.target.value) {
+    string += event.target.value;
+    document.getElementById("strres").value = string;
+    }
+
+}
+
+
+function calculate(string) {
+    try {
+        var result = eval(string);
+        document.getElementById("strres").value = result;
+        string = result; // Update string with the result for further calculations
+        
+    } catch (error) {
+        document.getElementById("strres").value = 'Error';
+        string = ''; // Clear the string in case of an error
+    }
+}
+
+///document.querySelector('input[value="="]').addEventListener("click", calculate);
+
+//  var elements = Array.from(document.getElementsByClassName('calculiter'));
+
+//  elements.forEach(function(element) {
+//      element.value = "asfsafs";
+//  });
+// eval(elements);
+</script>
